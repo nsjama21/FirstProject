@@ -1,0 +1,163 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #5e3451;
+  color: #fff;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  display: flex;
+/* diplay flex easily centers everything */
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+/* height will be above notification from the bottom */
+  margin: 0;
+  overflow: hidden;
+  /* overflow hidden hides scroll bar */
+}
+
+h1 {
+  margin: 20px 0 0 0;
+   /* margin for h1 left, right, top, bottom */
+}
+
+.game-container {
+  /* wraps everything from top to before "You have won pop-up" and notification for win/lose/enter wrong letter */
+  padding: 20px 20px 30px 30px;
+  /* padding top, right, bottom left */
+  position: relative;
+  /* relative because stuff inside needs to be positioned absolute so parent has to be positioned relative */
+  margin: auto;
+  /* margin auto pushes everything to middle */
+  height: 350px;
+  width: 450px;
+}
+
+.hangman-container {
+  /* fill color is for the head of the hangmang */
+  fill: transparent;
+  stroke: #fff;
+  /* stroke is the line for the hangman */
+  stroke-width: 4px;
+  stroke-linecap: round;
+}
+
+.figure-body-part {
+  display: none;
+}
+
+.wrong-letters-container {
+  position: absolute;
+  /* absolute position within hangman container */
+  top: 20px;
+  right: 20px;
+  /* top/right pushes it to the right handside top side */
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  /* aligned to the right */
+}
+
+.wrong-letters-container p {
+  margin: 0 0 5px;
+  /* margins top, right, bottom, left */
+}
+
+.wrong-letters-container span {
+  font-size: 24px;
+  /* font size for wrong letters inline span tag */
+}
+
+.word {
+  display: flex;
+  /* aligns everything horizontally */
+  position: absolute;
+  /* absolute within hangman container */
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+}
+
+.letter {
+  border-bottom: 3px solid #2980b9;
+  /* each letter has it's own border */
+  display: inline-flex;
+  font-size: 30px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 3px 3px;
+  /* margin top, bottom, left, right */
+  height: 50px;
+  width: 20px;
+}
+
+.popup-container {
+  /* "you have won message" */
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* display: flex; when shown when you win or lose*/
+  display: none;
+  /* display none at beginning */
+  align-items: center;
+  justify-content: center;
+/* pushes everything to middle */
+}
+
+.popup {
+  /* pop is the square in the middle of "you have won message" */
+  background: #2980b9;
+  border-radius: 5px;
+  box-shadow: 0 15px 10px 3px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.popup button {
+  /* the play again button */
+  cursor: pointer;
+  background-color: #fff;
+  color: #2980b9;
+  border: 0;
+  margin-top: 20px;
+  padding: 12px 20px;
+  /* padding top, bottom, left, right */
+  font-size: 16px;
+}
+
+.popup button:active {
+  transform: scale(0.98);
+  /* scales down button a little */
+}
+
+.popup button:focus {
+  outline: 0;
+  /* gets rid of outline when you click on it*/
+}
+
+.notification-container {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px 10px 0 0;
+  /* rounded the corners */
+  padding: 15px 15px 20px 20px;
+  position: absolute;
+  /* positions this off-screen initially in window  */
+  bottom: -50px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.notification-container p {
+  margin: 0;
+  /* positions notification off-screen and when you click a letter you've already clicked it will slide back on screen */
+}
+
+.notification-container.show {
+  /* this is the show class that will show notification from bottom */
+  transform: translateY(-50px);
+}
